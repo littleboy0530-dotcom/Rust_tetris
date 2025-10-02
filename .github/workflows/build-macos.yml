@@ -1,0 +1,28 @@
+name: Build macOS Binary
+
+on:
+  push:
+    branches: [ main ]  # 또는 너의 브랜치 이름
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          override: true
+
+      - name: Build for macOS
+        run: cargo build --release
+
+      - name: Upload macOS binary
+        uses: actions/upload-artifact@v3
+        with:
+          name: mac-binary
+          path: target/release/rust_tetris  # 프로젝트 이름에 맞게 수정
