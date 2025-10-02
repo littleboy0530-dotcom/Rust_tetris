@@ -2,7 +2,7 @@ name: Build macOS Binary
 
 on:
   push:
-    branches: [ master ]  # 또는 너의 브랜치 이름
+    branches: [ master ]
 
 jobs:
   build:
