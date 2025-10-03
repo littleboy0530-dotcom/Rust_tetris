@@ -818,7 +818,7 @@ fn main() {
             'l' => {if now.kind != Mino::O {
                     rotate_right_with_kick(&mut now, &board);
                     }},
-            ' ' => {board.hard_drop(&mut now);
+            'j' => {board.hard_drop(&mut now);
                     hold.can_hold = true;
                     now = Now::init_with(next.give_block());},
             's' => {move_down(&mut now, &board);},
