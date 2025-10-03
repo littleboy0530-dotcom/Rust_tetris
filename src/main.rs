@@ -7,7 +7,7 @@ use crossterm::{
     cursor::{Hide, MoveTo, Show},
     event::{self, Event, KeyCode, KeyEventKind},
     execute,
-    terminal::{Clear, ClearType},
+    terminal::{Clear, ClearType,enable_raw_mode},
     style::Print,
 };
 use std::{
@@ -793,6 +793,7 @@ fn print_all(board: &[[char;10];20], hold: &Hold, next: &Next, gm: &GameManager)
 // |12(  )78|0123456789|12####34|  9
 // |12345678|==========|12####34|  20
 fn main() {
+    
     // 시작 시 커서 숨기기
     execute!(stdout(), Hide).unwrap();
     clear_one();
