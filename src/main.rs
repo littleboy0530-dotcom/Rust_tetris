@@ -854,13 +854,6 @@ fn main() {
                 hold.can_hold = true;
                 now = Now::init_with(next.give_block());
 
-                if !board.is_possible(&now) {
-                    clear_one();
-                    println!("GAME OVER....");
-                    game_manager.print_record();
-
-                    thread::sleep(Duration::from_secs(3));
-                }
                 lock_timer = None;
             }
         }
@@ -884,6 +877,17 @@ fn main() {
             game_manager.cleard += cleared_line;
             game_manager.score_up(cleared_line);
             game_manager.level_up();
+        }
+
+        if now.loc == ORIGIN_LOC {
+            if !board.is_possible(&now) {
+                    clear_one();
+                    println!("GAME OVER....");
+                    game_manager.print_record();
+
+                    thread::sleep(Duration::from_secs(3));
+                    return
+                }
         }
         print_all(&board.draw_with(&now), &hold, &next, &game_manager);
 
